@@ -280,9 +280,9 @@ Patch0002: 0002-libxl-use-disk-script-attribute.patch
 Patch0003: 0003-xenconfig-parse-vif-backend-attribute-tests.patch
 Patch0004: 0004-libxl-Stubdom-emulator-type.patch
 Patch0005: 0005-libxl-support-domain-config-modification-in-virDomai.patch
-Patch0006: 0006-libxl-send-lifecycle-event-on-suspend.patch
-Patch0007: 0007-libxl-implement-virDomainPM-functions.patch
-Patch0008: 0008-libxl-initialize-domain-state-with-real-data.patch
+#Patch0006: 0006-libxl-send-lifecycle-event-on-suspend.patch
+#Patch0007: 0007-libxl-implement-virDomainPM-functions.patch
+#Patch0008: 0008-libxl-initialize-domain-state-with-real-data.patch
 Patch0009: 0009-Add-nostrictreset-attribute-to-PCI-host-devices.patch
 Patch0010: 0010-libxl-pause-also-stubdomain-if-any-while-pausing-a-d.patch
 Patch0011: 0011-libxl-plug-workaround-for-missing-pcidev-group-assig.patch
@@ -290,16 +290,16 @@ Patch0012: 0012-conf-add-xen-specific-feature-e820_host.patch
 Patch0013: 0013-libxl-make-use-of-e820_host-feature.patch
 Patch0014: 0014-xenconfig-parse-e820_host-option.patch
 Patch0015: 0015-tests-check-e820_host-option-handling.patch
-Patch0016: 0016-libxl-set-shadow-memory-for-any-guest-type-not-only-.patch
+#Patch0016: 0016-libxl-set-shadow-memory-for-any-guest-type-not-only-.patch
 Patch0017: 0017-libxl-add-linux-stubdom-support.patch
-#Patch0018: 0018-libxl-add-support-for-qubes-graphic-device.patch
+Patch0018: 0018-libxl-add-support-for-qubes-graphic-device.patch
 Patch0019: 0019-libxl-add-support-for-stubdom_mem-option.patch
 Patch0020: 0020-libxl-add-basic-PVHv2-support.patch
 Patch0021: 0021-Add-permissive-option-for-PCI-devices.patch
-Patch0022: 0022-libxl-Add-basic-support-for-type-pvh.patch
+#Patch0022: 0022-libxl-Add-basic-support-for-type-pvh.patch
 Patch0023: 0023-fixup-conf-add-xen-specific-feature-e820_host.patch
-Patch0024: 0024-fixup-libxl-Add-basic-support-for-type-pvh.patch
-Patch0025: 0025-fixup-libxl-implement-virDomainPM-functions.patch
+#Patch0024: 0024-fixup-libxl-Add-basic-support-for-type-pvh.patch
+#Patch0025: 0025-fixup-libxl-implement-virDomainPM-functions.patch
 
 Requires: libvirt-daemon = %{version}-%{release}
 %if %{with_network}
