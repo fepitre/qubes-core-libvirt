@@ -1,4 +1,4 @@
-From 65587ceaadcbaeccf31fbd3ceca9c7314b2171b3 Mon Sep 17 00:00:00 2001
+From 33cb807840941def3325ddb911edc9eb84e3c116 Mon Sep 17 00:00:00 2001
 From: Marek Marczykowski <marmarek@invisiblethingslab.com>
 Date: Sun, 14 Apr 2013 04:28:00 +0200
 Subject: [PATCH] libxl: support domain config modification in
@@ -6,8 +6,6 @@ Subject: [PATCH] libxl: support domain config modification in
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Organization: Invisible Things Lab
-Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 
 Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 ---
@@ -50,5 +48,5 @@ index 5a5e792957..72b58225bc 100644
                                     driver->xmlopt,
                                     VIR_DOMAIN_OBJ_LIST_ADD_LIVE |
 -- 
-2.13.6
+2.17.1
 
