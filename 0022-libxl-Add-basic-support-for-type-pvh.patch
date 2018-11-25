@@ -1,4 +1,4 @@
-From 8b5b944fa9867d8aa73fefc7ad77cb17fdf6a9b5 Mon Sep 17 00:00:00 2001
+From 5609401649bb4bfdb725de92ae7d02ccd43c7c8c Mon Sep 17 00:00:00 2001
 From: Simon Gaiser <simon@invisiblethingslab.com>
 Date: Wed, 24 Jan 2018 04:47:00 +0100
 Subject: [PATCH] libxl: Add basic support for type=pvh
@@ -15,10 +15,10 @@ cpu capabilities handling).
  6 files changed, 65 insertions(+), 10 deletions(-)
 
 diff --git a/docs/schemas/domaincommon.rng b/docs/schemas/domaincommon.rng
-index de5955b9ac..ce25257769 100644
+index acb77b6160..f1f70ee382 100644
 --- a/docs/schemas/domaincommon.rng
 +++ b/docs/schemas/domaincommon.rng
-@@ -3059,7 +3059,6 @@
+@@ -3098,7 +3098,6 @@
                  <value>qemu</value>
                  <value>stubdom</value>
                  <value>stubdom-linux</value>
@@ -26,7 +26,7 @@ index de5955b9ac..ce25257769 100644
                </choice>
              </attribute>
            </optional>
-@@ -3081,7 +3080,6 @@
+@@ -3120,7 +3119,6 @@
                <value>qemu</value>
                <value>stubdom</value>
                <value>stubdom-linux</value>
@@ -35,7 +35,7 @@ index de5955b9ac..ce25257769 100644
            </attribute>
            <optional>
 diff --git a/src/conf/domain_conf.c b/src/conf/domain_conf.c
-index 5503e19314..1454eab98b 100644
+index caba2689cc..9311714191 100644
 --- a/src/conf/domain_conf.c
 +++ b/src/conf/domain_conf.c
 @@ -126,7 +126,8 @@ VIR_ENUM_IMPL(virDomainOS, VIR_DOMAIN_OSTYPE_LAST,
@@ -48,7 +48,7 @@ index 5503e19314..1454eab98b 100644
  
  VIR_ENUM_IMPL(virDomainBoot, VIR_DOMAIN_BOOT_LAST,
                "fd",
-@@ -860,8 +861,7 @@ VIR_ENUM_IMPL(virDomainDiskTray, VIR_DOMAIN_DISK_TRAY_LAST,
+@@ -866,8 +867,7 @@ VIR_ENUM_IMPL(virDomainDiskTray, VIR_DOMAIN_DISK_TRAY_LAST,
  VIR_ENUM_IMPL(virDomainEmulatorType, VIR_DOMAIN_EMULATOR_TYPE_LAST,
                "qemu",
                "stubdom",
@@ -58,7 +58,7 @@ index 5503e19314..1454eab98b 100644
  
  VIR_ENUM_IMPL(virDomainRNGModel,
                VIR_DOMAIN_RNG_MODEL_LAST,
-@@ -18838,6 +18838,7 @@ virDomainDefParseBootOptions(virDomainDefPtr def,
+@@ -19089,6 +19089,7 @@ virDomainDefParseBootOptions(virDomainDefPtr def,
  
      if (def->os.type == VIR_DOMAIN_OSTYPE_XEN ||
          def->os.type == VIR_DOMAIN_OSTYPE_HVM ||
@@ -67,7 +67,7 @@ index 5503e19314..1454eab98b 100644
          xmlNodePtr loader_node;
  
 diff --git a/src/conf/domain_conf.h b/src/conf/domain_conf.h
-index 6888e32071..f528134a7d 100644
+index 0c959ebf1a..678de4ccb6 100644
 --- a/src/conf/domain_conf.h
 +++ b/src/conf/domain_conf.h
 @@ -255,6 +255,7 @@ typedef enum {
@@ -78,7 +78,7 @@ index 6888e32071..f528134a7d 100644
  
      VIR_DOMAIN_OSTYPE_LAST
  } virDomainOSType;
-@@ -2102,7 +2103,6 @@ typedef enum {
+@@ -2110,7 +2111,6 @@ typedef enum {
      VIR_DOMAIN_EMULATOR_TYPE_DEFAULT,
      VIR_DOMAIN_EMULATOR_TYPE_STUBDOM,
      VIR_DOMAIN_EMULATOR_TYPE_STUBDOM_LINUX,
@@ -120,7 +120,7 @@ index 18596c7c72..3bc0b2f06f 100644
  
      return 0;
 diff --git a/src/libxl/libxl_conf.c b/src/libxl/libxl_conf.c
-index db2bea040f..4439ff8079 100644
+index d19ff37820..fdba6bdbec 100644
 --- a/src/libxl/libxl_conf.c
 +++ b/src/libxl/libxl_conf.c
 @@ -148,6 +148,8 @@ libxlMakeDomCreateInfo(libxl_ctx *ctx,
@@ -203,7 +203,7 @@ index db2bea040f..4439ff8079 100644
          }
          if (VIR_STRDUP(x_nic->model, l_nic->model) < 0)
 diff --git a/src/xenconfig/xen_common.c b/src/xenconfig/xen_common.c
-index 16e08007e4..7ffca30833 100644
+index 51fae0604b..0def2e6d28 100644
 --- a/src/xenconfig/xen_common.c
 +++ b/src/xenconfig/xen_common.c
 @@ -592,6 +592,11 @@ xenParseCPUFeatures(virConfPtr conf,
@@ -229,5 +229,5 @@ index 16e08007e4..7ffca30833 100644
          implicitInputBus = VIR_DOMAIN_INPUT_BUS_PS2;
  
 -- 
-2.13.6
+2.17.1
 

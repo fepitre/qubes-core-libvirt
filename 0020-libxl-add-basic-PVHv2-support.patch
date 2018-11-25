@@ -1,12 +1,10 @@
-From dea5460b451191fc33c19aae60aeab75d9d1f57d Mon Sep 17 00:00:00 2001
+From 55ee7b247355029aa674b7040cc2cdfd5330cf7f Mon Sep 17 00:00:00 2001
 From: HW42 <hw42@ipsumj.de>
 Date: Fri, 29 Sep 2017 05:56:55 +0200
 Subject: [PATCH] libxl: add basic PVHv2 support
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Organization: Invisible Things Lab
-Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 
 Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 ---
@@ -17,10 +15,10 @@ Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
  4 files changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/docs/schemas/domaincommon.rng b/docs/schemas/domaincommon.rng
-index 80562c4567..04ec1087fe 100644
+index 71e2210503..b84d830153 100644
 --- a/docs/schemas/domaincommon.rng
 +++ b/docs/schemas/domaincommon.rng
-@@ -3054,6 +3054,7 @@
+@@ -3093,6 +3093,7 @@
                  <value>qemu</value>
                  <value>stubdom</value>
                  <value>stubdom-linux</value>
@@ -28,7 +26,7 @@ index 80562c4567..04ec1087fe 100644
                </choice>
              </attribute>
            </optional>
-@@ -3075,6 +3076,7 @@
+@@ -3114,6 +3115,7 @@
                <value>qemu</value>
                <value>stubdom</value>
                <value>stubdom-linux</value>
@@ -37,10 +35,10 @@ index 80562c4567..04ec1087fe 100644
            </attribute>
            <optional>
 diff --git a/src/conf/domain_conf.c b/src/conf/domain_conf.c
-index 9f0dea71df..68639e2913 100644
+index 5123f0eafe..61c6488098 100644
 --- a/src/conf/domain_conf.c
 +++ b/src/conf/domain_conf.c
-@@ -860,7 +860,8 @@ VIR_ENUM_IMPL(virDomainDiskTray, VIR_DOMAIN_DISK_TRAY_LAST,
+@@ -866,7 +866,8 @@ VIR_ENUM_IMPL(virDomainDiskTray, VIR_DOMAIN_DISK_TRAY_LAST,
  VIR_ENUM_IMPL(virDomainEmulatorType, VIR_DOMAIN_EMULATOR_TYPE_LAST,
                "qemu",
                "stubdom",
@@ -51,10 +49,10 @@ index 9f0dea71df..68639e2913 100644
  VIR_ENUM_IMPL(virDomainRNGModel,
                VIR_DOMAIN_RNG_MODEL_LAST,
 diff --git a/src/conf/domain_conf.h b/src/conf/domain_conf.h
-index d8fadb8e8e..fcd767fecd 100644
+index c3a062afb3..ee77cf06f2 100644
 --- a/src/conf/domain_conf.h
 +++ b/src/conf/domain_conf.h
-@@ -2101,6 +2101,7 @@ typedef enum {
+@@ -2109,6 +2109,7 @@ typedef enum {
      VIR_DOMAIN_EMULATOR_TYPE_DEFAULT,
      VIR_DOMAIN_EMULATOR_TYPE_STUBDOM,
      VIR_DOMAIN_EMULATOR_TYPE_STUBDOM_LINUX,
@@ -63,7 +61,7 @@ index d8fadb8e8e..fcd767fecd 100644
      VIR_DOMAIN_EMULATOR_TYPE_LAST
  } virDomainEmulatorType;
 diff --git a/src/libxl/libxl_conf.c b/src/libxl/libxl_conf.c
-index c8d7c25e1e..cd70be3432 100644
+index 28d5258dea..10ba6d9995 100644
 --- a/src/libxl/libxl_conf.c
 +++ b/src/libxl/libxl_conf.c
 @@ -549,6 +549,8 @@ libxlMakeDomBuildInfo(virDomainDefPtr def,
@@ -76,5 +74,5 @@ index c8d7c25e1e..cd70be3432 100644
  
          /* In case of stubdom there will be two qemu instances:
 -- 
-2.13.6
+2.17.1
 

@@ -1,12 +1,10 @@
-From 635673e1d818f408926124062adb8cd7467d50b4 Mon Sep 17 00:00:00 2001
+From f187358296bb8114134a54c34f9a8f2fa23c0ba5 Mon Sep 17 00:00:00 2001
 From: Marek Marczykowski <marmarek@invisiblethingslab.com>
 Date: Fri, 5 Apr 2013 01:41:04 +0200
 Subject: [PATCH] libxl: use disk 'script' attribute
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Organization: Invisible Things Lab
-Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 
 Implement handling of previously introduced <script/> element for disk
 config.
@@ -20,7 +18,7 @@ Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/src/libxl/libxl_conf.c b/src/libxl/libxl_conf.c
-index 452a77f3b8..c79dcf8385 100644
+index 998029dcbb..ea9a3bdf6f 100644
 --- a/src/libxl/libxl_conf.c
 +++ b/src/libxl/libxl_conf.c
 @@ -980,6 +980,9 @@ libxlMakeDisk(virDomainDiskDefPtr l_disk, libxl_device_disk *x_disk)
@@ -34,5 +32,5 @@ index 452a77f3b8..c79dcf8385 100644
          if (STREQ(driver, "tap") || STREQ(driver, "tap2")) {
              switch (format) {
 -- 
-2.13.6
+2.17.1
 

@@ -1,4 +1,4 @@
-From bb25bfd0e9453637ae5e29390043b6bc6df7ee82 Mon Sep 17 00:00:00 2001
+From 936c4953a41f5337feb8cceebaec068156716575 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
  <marmarek@invisiblethingslab.com>
 Date: Wed, 25 Nov 2015 00:48:56 +0100
@@ -6,8 +6,6 @@ Subject: [PATCH] libxl: pause also stubdomain (if any) while pausing a domain
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Organization: Invisible Things Lab
-Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 
 Otherwise stubdomain would crash, if host suspend was in effect in the
 meantime.
@@ -79,5 +77,5 @@ index 0ac7d12921..299b6b3eba 100644
          virDomainObjSetState(vm, VIR_DOMAIN_RUNNING,
                               VIR_DOMAIN_RUNNING_UNPAUSED);
 -- 
-2.13.6
+2.17.1
 

@@ -1,4 +1,4 @@
-From 6f4f570ff2cd698b3c070e41c9d2cd482e3a9f64 Mon Sep 17 00:00:00 2001
+From 108fee84381ba26b62c1bca99bec9ea04b55bbc5 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
  <marmarek@invisiblethingslab.com>
 Date: Tue, 10 Feb 2015 06:35:52 +0100
@@ -6,8 +6,6 @@ Subject: [PATCH] libxl: initialize domain state with real data
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Organization: Invisible Things Lab
-Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 
 When libvirtd is started, initialize domain objects state with its real
 state, not only RUNNING/SHUTOFF.
@@ -40,5 +38,5 @@ index ac39266a27..0ac7d12921 100644
          driver->inhibitCallback(true, driver->inhibitOpaque);
  
 -- 
-2.13.6
+2.17.1
 

@@ -1,4 +1,4 @@
-From 067fc7e919a86b2dfe17ca49dfc9d11e55c8e5d2 Mon Sep 17 00:00:00 2001
+From 34d689df12882b44285e54a1d582e8e12f86da33 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
  <marmarek@invisiblethingslab.com>
 Date: Sat, 30 Jul 2016 00:36:08 +0200
@@ -6,8 +6,6 @@ Subject: [PATCH] libxl: set shadow memory for any guest type, not only HVM
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Organization: Invisible Things Lab
-Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 
 Otherwise starting PVH guest will result in "arch_setup_bootlate:
 mapping shared_info failed (pfn=..., rc=-1, errno: 12): Internal error".
@@ -20,7 +18,7 @@ Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
  1 file changed, 4 insertions(+), 5 deletions(-)
 
 diff --git a/src/libxl/libxl_conf.c b/src/libxl/libxl_conf.c
-index 5f35a9c105..34396a2901 100644
+index ea1e6d4f06..632e120db6 100644
 --- a/src/libxl/libxl_conf.c
 +++ b/src/libxl/libxl_conf.c
 @@ -651,11 +651,6 @@ libxlMakeDomBuildInfo(virDomainDefPtr def,
@@ -47,5 +45,5 @@ index 5f35a9c105..34396a2901 100644
  }
  
 -- 
-2.13.6
+2.17.1
 
