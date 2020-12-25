@@ -137,7 +137,7 @@
     %define with_openvz 0
     %define with_vbox 0
     %define with_vmware 0
-    %define with_libxl 0
+    %define with_libxl 1
     %define with_hyperv 0
     %define with_vz 0
 
@@ -242,6 +242,11 @@
 # Mostly useless in Qubes OS dom0, save on build dependencies
 %define with_wireshark 0
 
+%if 0%{?rhel}
+    %define with_dtrace 0
+%else
+    %define with_dtrace 1
+%endif
 ### End of Qubes settings ####
 
 # Force QEMU to run as non-root
@@ -1228,6 +1233,11 @@ exit 1
     %define arg_nss --without-nss-plugin
 %endif
 
+%if %{with_dtrace}
+    %define arg_dtrace --with-dtrace
+%else
+    %define arg_dtrace --without-dtrace
+%endif
 
 %define when  %(date +"%%F-%%T")
 %define where %(hostname)
@@ -1298,7 +1308,7 @@ cd %{_vpath_builddir}
            --with-libpcap \
            --with-macvtap \
            --with-audit \
-           --with-dtrace \
+           %{?arg_dtrace} \
            --with-driver-modules \
            %{?arg_firewalld} \
            %{?arg_firewalld_zone} \
@@ -1405,6 +1415,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/augeas/lenses/tests/test_libvirtd_libxl.aug
 # Copied into libvirt-docs subpackage eventually
 mv $RPM_BUILD_ROOT%{_datadir}/doc/libvirt libvirt-docs
 
+%if %{with_dtrace}
 %ifarch %{power64} s390x x86_64 ia64 alpha sparc64
 mv $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/libvirt_probes.stp \
    $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/libvirt_probes-64.stp
@@ -1413,6 +1424,7 @@ mv $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/libvirt_probes.stp \
 mv $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/libvirt_qemu_probes.stp \
    $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/libvirt_qemu_probes-64.stp
     %endif
+%endif
 %endif
 
 # BEGIN QUBES SPECIFIC PART
@@ -2023,10 +2035,12 @@ exit 0
 %{_bindir}/virt-pki-validate
 %{_bindir}/virt-host-validate
 
+%if %{with_dtrace}
 %{_datadir}/systemtap/tapset/libvirt_probes*.stp
 %{_datadir}/systemtap/tapset/libvirt_functions.stp
 %if %{with_qemu}
 %{_datadir}/systemtap/tapset/libvirt_qemu_probes*.stp
+%endif
 %endif
 
 %if %{with_bash_completion}
